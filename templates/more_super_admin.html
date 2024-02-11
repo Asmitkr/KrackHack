@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>More Super Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/coordinator.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <div class="username-usericon">
+        <img class="user_icon" src="{{ url_for('static', filename='User Icon.png') }}">
+        <p class="username">{{ current_user.username }}</p></div>
+        <div class="logout-logouticon">
+        <a href="/logout" class="logout">Logout</a>
+        <img class="user_icon logout-icon" src="{{ url_for('static', filename='Logout Icon.png') }}"></div>
+    </div>
+    <div class="main-div">
+        <div class="first">
+            <div class="remaining-budget super-admin">
+                <p class="budget">Add or Remove Users</p>
+                <hr>
+                <form method="post" action="/manage_users">
+                    <label for="action">Action:</label>
+                    <select id="action" name="action" required>
+                        <option value="add">Add User</option>
+                        <option value="remove">Remove User</option>
+                    </select><br><br>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required><br><br>
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="user">Coordinator</option>
+                        <option value="admin">Secretary</option>
+                        <option value="three">clubFA</option>
+                        <option value="four">societyFA</option>
+                        <option value="five">chairSAP</option>
+                        <option value="super_admin">Dean students</option>
+                        {% if current_user.role == 'more_super_admin' %}
+                            <option value="more_super_admin">More Super Admin</option>
+                        {% endif %}
+                    </select><br><br>
+                    {% if current_user.role == 'more_super_admin' %}
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password" required><br><br>
+                    {% endif %}
+                    <button type="submit" class="add-user-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="user-list">
+            <h2>User List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.role }}</td>
+                    <td><a href="/remove_user/{{ user.id }}">Remove</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        </div>
+        </div>
+    <!-- <h1>Welcome, More Super Admin!</h1>
+    <h2>Add or Remove Users</h2>
+    <ul>
+        {% for complaint in complaints %}
+            <li>{{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.status }} - 
+                {% if (complaint.approvedByAdmin == 'Approved') and (complaint.approvedBySuperAdmin == 'Approved') and (complaint.aprovedByMoreSuperAdmin != 'Approved')%}
+                    <form method="post" action="/manage_complaint/{{ complaint.id }}/approve">
+                        <button type="submit">Approve</button>
+                    </form>
+                    <form method="post" action="/manage_complaint/{{ complaint.id }}/decline">
+                        <button type="submit">Decline</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="/manage_users">
+        <label for="action">Action:</label>
+        <select id="action" name="action" required>
+            <option value="add">Add User</option>
+            <option value="remove">Remove User</option>
+        </select><br><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required><br><br>
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            <option value="three">Three</option>
+            <option value="four">Four</option>
+            <option value="five">Five</option>
+            <option value="super_admin">Super Admin</option>
+            {% if current_user.role == 'more_super_admin' %}
+                <option value="more_super_admin">More Super Admin</option>
+            {% endif %}
+        </select><br><br>
+        {% if current_user.role == 'more_super_admin' %}
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required><br><br>
+        {% endif %}
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <h2>User List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.role }}</td>
+                    <td><a href="/remove_user/{{ user.id }}">Remove</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br> -->
+</body>
+</html>
+

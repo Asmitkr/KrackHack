@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/coordinator.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <div class="username-usericon">
+        <img class="user_icon" src="{{ url_for('static', filename='User Icon.png') }}">
+        <p class="username">{{ current_user.username }}</p></div>
+        <div class="logout-logouticon">
+        <a href="/logout" class="logout">Logout</a>
+        <img class="user_icon logout-icon" src="{{ url_for('static', filename='Logout Icon.png') }}"></div>
+    </div>
+    <div class="main-div">
+    <div class="first">
+        <div class="remaining-budget">
+            <p class="budget">Remaining Budget</p>
+            <hr>
+            <p class="rupees">₹ 8500</p>
+        </div>
+        <div class="open-requests">
+            <p class="heading">Open Requests</p><hr>
+            <ul>
+                {% for complaint in complaints %}
+            <!--{{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.status }} -   -->
+                {% if complaint.approvedByAdmin == 'Pending' %}
+                    <li class="open">{{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.status }}</li>
+                    <form method="post" action="/manage_complaint/{{ complaint.id }}/approve">
+                    </form>
+                    <form method="post" action="/manage_complaint/{{ complaint.id }}/decline">
+                    </form>
+                {% endif %}
+        {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="generate-request">
+    <p class="heading">Generate a Request</p><hr>
+    <form method="post" action="/submit_complaint">
+        {{ form.csrf_token }}
+        <p class="sub">Subject</p><br>
+        <textarea id="complaint" name="complaint" rows="4" cols="50" required></textarea><br><br><br><br>
+        <div class="priority-amount">
+            <div class="priority">
+                <p id="priority">Priority</p>
+                <input type="checkbox" id="normal" name="normal" checked />
+                <label for="normal">Normal</label>
+                <input type="checkbox" id="urgent" name="urgent" unchecked />
+                <label for="urgent">Urgent</label>
+            </div>
+            <div class="amount">
+                <p>Amount</p>
+                <input placeholder="₹ Enter amount in numbers only" class="amt" name="amt"/>
+            </div>
+        </div>
+        <div class="attachment-cancel">
+            <div class="attachment">
+                <p>Attachments</p>
+                <input type="file" name="files" id="files" multiple>
+                <button id="cancel">Cancel</button>
+            </div>
+            <div class="cancel">
+                <button class="create-request" type="submit">Create Request</button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="closed-requests">
+        <p class="heading">All Requests</p><hr>
+        {% for complaint in complaints %}
+                
+                    <li>{{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.approvedByAdmin }} </li>
+               
+        {% endfor %}
+    </div>
+    </div>
+    <!-- <h2>Change Password</h2>
+    <form method="post" action="/change_password">
+        <label for="current_password">Current Password:</label>
+        <input type="password" id="current_password" name="current_password" placeholder="Enter current password" required><br><br>
+        <label for="new_password">New Password:</label>
+        <input type="password" id="new_password" name="new_password" placeholder="Enter new password" required><br><br>
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password" required><br><br>
+        <button type="submit">Change Password</button>
+    </form>
+    <br>  -->
+    </div></div>
+</body>
+</html>
+
+

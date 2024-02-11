@@ -1,0 +1,301 @@
+html{
+    box-sizing:border-box;
+    background-color: #f0f0f0;
+}
+
+*, *:before, *:after{
+    box-sizing:inherit;
+    font-family: 'Gilroy';
+    padding: 0%;
+    margin:0%;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.nav{
+    height: 7vh;
+    display: flex;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.username-usericon,.logout-logouticon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.username{
+    margin-left: 2px;
+    font-size: 22px;
+    font-weight: medium;
+}
+
+.user_icon{
+    height:25px;
+    margin-left: 7%;
+    margin-right: 15px;
+    
+}
+
+.logout{
+    font-size: 22px;
+    font-weight: medium;
+}
+
+.logout-icon{
+    margin-right: 20px;
+}
+
+.main-div{
+    margin-top: 3%;
+    height:70vh;
+    display: flex;
+}
+
+.remaining-budget{
+    background-color: #ffffff;
+    height:40%;
+    width:98%;
+    padding: 2%;
+    border-radius: 15px;
+    margin:1%;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.budget{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.rupees{
+    font-size: 64px;
+    font-weight: bold;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+.generate-request{
+    background-color: #ffffff;
+    height: 98%;
+    width: 40%;
+    padding: 2%;
+    border-radius: 15px;
+    margin:0.3%;
+    margin-left: 2%;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.heading{
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.priority-amount{
+    display: flex;
+}
+
+.priority{
+    width: 50%;
+}
+
+.amount{
+    width:50%;
+}
+
+.attachment-cancel{
+    display: flex;
+    padding-top: 3%;
+}
+
+.attachment{
+    width: 50%;
+}
+
+.cancel{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub{
+    padding-top: 3%;
+}
+
+#subject{
+    height:35px;
+    width: 100%;
+    border-radius: 7px;
+}
+
+#description{
+    height:70px;
+    width: 100%;
+    border-radius: 7px;
+}
+
+#priority{
+    padding-bottom: 3%;
+}
+
+.amt{
+    width:105%;
+    border-radius: 7px;
+    height: 30px;
+}
+
+#cancel,.create-request{
+    width:50%;
+}
+
+.cancel{
+    position: relative;
+}
+
+.create-request{
+    background-color: blue;
+    border:none;
+    color:#ffffff;
+    border-radius: 7px;
+    width: 60%;
+    height: 35px;
+    position: absolute;
+    top:70%;
+    left:40%;
+}
+
+#files{
+    margin-top: 5%;
+    background-color: #ffffff;
+    margin-bottom: 5%;
+}
+
+#cancel{
+    background-color: #ffffff;
+    border-radius: 7px;
+    width: 60%;
+    height: 35px;
+}
+
+.first{
+    height: 98%;
+    width: 25%;
+    margin-left: 2%;
+}
+
+.open-requests{
+    background-color: #ffffff;
+    height: 54.5%;
+    padding: 2%;
+    border-radius: 15px;
+    margin:1%;
+    margin-top: 6%;
+    margin-bottom: 0%;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.requests{
+    background-color: #f0f0f0;
+    border-radius: 7px;
+    display: flex;
+    height: 25%;
+    padding: 3%;
+    margin-top: 2%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status{
+    background-color: blue;
+    border: none;
+    color: #ffffff;
+    border-radius: 7px;
+    width: 30%;
+    height:35px;
+    font-size: 18px;
+}
+
+.money{
+    color:red;
+}
+
+input{
+    padding-left: 2%;
+}
+
+.closed-requests{
+    width:25%;
+    height: 60%;
+    background-color: #ffffff;
+    padding: 2%;
+    border-radius: 15px;
+    margin:0.3%;
+    margin-left: 2%;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.open{
+    margin-left: 15px;
+}
+
+.super-admin{
+    height:50%;
+}
+
+.user-list{
+    background-color: #ffffff;
+    height:50%;
+    padding: 2%;
+    border-radius: 15px;
+    margin-left: 20px;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-submit{
+    background-color: blue;
+    border:none;
+    color:#ffffff;
+    border-radius: 7px;
+    height: 35px;
+    width:40%;
+}
+
+.approve{
+    background-color: green;
+    border: none;
+    border-radius: 7px;
+    height: 35px;
+    width:70px;
+    color:#ffffff;
+    margin:10px;
+}
+
+.decline{
+    background-color: red;
+    border: none;
+    border-radius: 7px;
+    height: 35px;
+    width:70px;
+    color:#ffffff;
+    margin:10px;
+}
+
+.approve-decline{
+    display: flex;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4 Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/coordinator.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <div class="username-usericon">
+        <img class="user_icon" src="{{ url_for('static', filename='User Icon.png') }}">
+        <p class="username">{{ current_user.username }}</p></div>
+        <div class="logout-logouticon">
+        <a href="/logout" class="logout">Logout</a>
+        <img class="user_icon logout-icon" src="{{ url_for('static', filename='Logout Icon.png') }}"></div>
+    </div>
+    <div class="main-div">
+        <div class="first">
+            <div class="remaining-budget">
+                <p class="budget">Remaining Budget</p>
+                <hr>
+                <p class="rupees">₹ 8500</p>
+            </div>
+            <div class="open-requests">
+                <p class="heading">Open Requests</p><hr>
+                <ul>
+                    {% for complaint in complaints %}
+                        <!--{{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.status }} - -->
+                            {% if (complaint.approvedBythree == 'Approved') and (complaint.approvedByfour == 'Pending') %}
+                                {{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.status }} - 
+                                <div class="approve-decline"><form method="post" action="/manage_complaint/{{ complaint.id }}/approve">
+                                    <button type="submit" class="approve">Approve</button>
+                                </form>
+                                <form method="post" action="/manage_complaint/{{ complaint.id }}/decline">
+                                    <button type="submit" class="decline">Decline</button>
+                                </form></div>
+                            {% endif %}
+                        
+                    {% endfor %}
+                </ul>            
+            </div>
+        </div>
+        <div class="closed-requests">
+            <p class="heading">All Requests</p><hr>
+                {% for complaint in complaints %}                
+                            <li>{{ complaint.content }} - {{ complaint.user.username }} - {{ complaint.approvedByfour }}</li>
+                {% endfor %}
+        </div>
+        </div>
+</body>
+</html>
+
